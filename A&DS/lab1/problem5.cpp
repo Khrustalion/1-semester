@@ -1,13 +1,15 @@
 ﻿#include <iostream>
-#include <string>
-
 
 
 int main()
 {
     int n; std::cin >> n;
-    bool flag = false;
-    std::string word, res = "YES"; std::cin >> word;
+    bool flag = false, res = true;
+
+    char* word = new char[n];
+    for (int i = 0; i < n; ++i) {
+        std::cin >> word[i];
+    }
     int i = 0, j = n - 1;
     while (i < j) {
         if (word[i] != word[j]) {
@@ -16,7 +18,7 @@ int main()
                 j--;
             }
             else {
-                res = "NO";
+                res = false;
                 break;
             }
         }
@@ -25,10 +27,10 @@ int main()
             j--;
         }
     }
-    if (res != "YES") {
+    if (not res) {
         int i = 0, j = n - 1;
         bool flag = false;
-        res = "YES";
+        res = true;
         while (i < j) {
             if (word[i] != word[j]) {
                 if (not flag) {
@@ -36,7 +38,7 @@ int main()
                     i++;
                 }
                 else {
-                    res = "NO";
+                    res = false;
                     break;
                 }
             }
@@ -46,6 +48,11 @@ int main()
             }
         }
     }
-    std::cout << res;
+    if (res) {
+        std::cout << "YES";
+    }
+    else {
+        std::cout << "NO";
+    }
     return 0;
 }
