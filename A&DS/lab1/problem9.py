@@ -1,84 +1,49 @@
-def stock_up(s):
-    s = bin(s)[2:]
+def binn(lst):
+    res = 0
+    for i in range(len(lst)-1, -1, -1):
+        res += lst[i] * 2**(len(lst)-i-1)
+    return res
+
+
+def f(x):
     cnt = 0
-    for i in range(len(s)-1):
-        if s[i] != s[i+1]:
+    for i in range(len(x)-1):
+        if x[i] != x[i+1]:
             cnt += 1
-        elif cnt > 2:
-            return False
     return cnt == 2
 
-def cnt_1(strng):
-    cnt_r = 0
-    for i in range(len(strng)-1):
-        if strng[i] != strng[i+1]:
-            cnt_r += 1
-        if cnt_r == 2:
-            return len(strng) - i - 1
-    return 1 if cnt_r == 1 else len(strng)
 
 
-def cnt_1_start(strng):
-    cnt_1 = 0
-    for i in range(len(strng)):
-        if strng[i] == '1':
-            cnt_1 += 1
-        else:
-            return cnt_1
-    return len(strng)
-
-
-x, y = [int(s) for s in input().split()]
+x, y = [int(g) for g in input().split()]
+flag1 = False
+flag2 = True
+cnt = 0
 
 
 
-
-
-if x < 10 and y < 10:
-    cnt = 0
-    for i in range(x, y+1):
-        if stock_up(i):
+for n in range(3, 61):
+    for i in range(0, n-2):
+        num = [0] * n
+        for k in range(i+1):
+            num[k] = 1
+        for j in range(n-1, i+1, -1):
+            num[j] = 1
             cnt += 1
-    print(cnt)
-else:
-    cnt = 1 if x < 5 else 1
-    x = max(9, x)
+            if cnt > 32187:
+                print(binn(num))
+            if flag2 and binn(num) >= x:
+                cnt = 1
+                flag2 = False
+            if binn(num) > y:
+                cnt -= 1
+                flag1 = True
+                break
+        if flag1:
+            break
+    if flag1:
+        break
+print(cnt)
 
 
-    pow_two_after_x = 1
-    pow_two_before_y = 1
-    while 2**pow_two_after_x < x:
-        pow_two_after_x += 1
-    while 2**(pow_two_before_y) < y:
-        pow_two_before_y += 1
-    if y == 2**(pow_two_before_y):
-        y -= 1
-        pow_two_before_y -= 1
-    cnt_1_x = cnt_1(bin(x)[2:])
-    cnt_1_y = cnt_1(bin(y)[2:]) if stock_up(y) else cnt_1(bin(y)[2:]) - 1
 
-    
-    if pow_two_after_x > pow_two_before_y:
-        print(cnt_1_y - cnt_1_x + 1)
-    elif 2**pow_two_after_x == x and 2**pow_two_before_y == y:
-        cnt_1 = 0
-        for i in range(pow_two_after_x, pow_two_before_y):
-            cnt_1 += (i*(i-1))//2
-        print(cnt_1)
-        
-    else:
-        x = bin(x)[2:]
-        y = bin(y)[2:]
-        for i in range(cnt_1_x, len(x) - cnt_1_start(x)):
-            cnt += 1
-        for i in range(len(x) - cnt_1_start(x) - 1):
-            cnt += (i * (i+1))//2
-        for i in range(cnt_1_y):
-            cnt += 1
-        for i in range(len(y) - cnt_1_start(y), len(y)-1):
-            cnt += (i * (i+1))//2
-        for i in range(pow_two_after_x, pow_two_before_y):
-            cnt += (i*(i-1))//2
-        print(cnt)
-        
     

@@ -16,5 +16,6 @@ int main() {
 		}
 	}
 	std::cout << index;
+	delete[]nums;
 	return 0;
 }

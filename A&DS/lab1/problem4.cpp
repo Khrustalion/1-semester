@@ -29,5 +29,8 @@ int main()
             if (not seriess[season][series]) std::cout << series + 1 << " " << season + 1 << '\n';
         }
     }
+    for (int i = 0; i < n; ++i) {
+        delete[]seriess[i];
+    }
     return 0;
 }
