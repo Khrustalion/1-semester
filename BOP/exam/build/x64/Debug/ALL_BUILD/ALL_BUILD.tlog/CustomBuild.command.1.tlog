@@ -1,0 +1,10 @@
+^C:\USERS\USER\DOCUMENTS\IS-1_SEMESTR\1-SEMESTER\BOP\EXAM\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/user/Documents/IS-1_semestr/1-semester/BOP/exam -BC:/Users/user/Documents/IS-1_semestr/1-semester/BOP/exam/build --check-stamp-file C:/Users/user/Documents/IS-1_semestr/1-semester/BOP/exam/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
