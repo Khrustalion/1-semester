@@ -1,0 +1,10 @@
+^C:\USERS\USER\DOCUMENTS\IS-1_SEMESTR\1-SEMESTER\BOP\EXAM\BUILD\CMAKEFILES\94001A31626D6B1D649CA4EF15E24639\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/user/Documents/IS-1_semestr/1-semester/BOP/exam -BC:/Users/user/Documents/IS-1_semestr/1-semester/BOP/exam/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/user/Documents/IS-1_semestr/1-semester/BOP/exam/build/exam.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
